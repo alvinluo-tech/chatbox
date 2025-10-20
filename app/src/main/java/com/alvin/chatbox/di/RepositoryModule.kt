@@ -1,6 +1,8 @@
 package com.alvin.chatbox.di
 
+import com.alvin.chatbox.data.repository.BloodPressureRepositoryImpl
 import com.alvin.chatbox.data.repository.ChatRepositoryImpl
+import com.alvin.chatbox.domain.repository.BloodPressureRepository
 import com.alvin.chatbox.domain.repository.ChatRepository
 import dagger.Binds
 import dagger.Module
@@ -15,6 +17,10 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindChatRepository(impl: ChatRepositoryImpl): ChatRepository
+    
+    @Binds
+    @Singleton
+    abstract fun bindBloodPressureRepository(impl: BloodPressureRepositoryImpl): BloodPressureRepository
 }
 
 

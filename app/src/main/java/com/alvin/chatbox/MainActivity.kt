@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import com.alvin.chatbox.ui.theme.ChatboxTheme
-import com.alvin.chatbox.presentation.chat.ChatScreen
+import com.alvin.chatbox.presentation.main.MainScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ChatboxTheme {
-                ChatScreen()
+                MainScreen()
             }
         }
     }

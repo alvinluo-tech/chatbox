@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,7 +7,9 @@ plugins {
     alias(libs.plugins.ksp)
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
 }
-
+configurations.all {
+    exclude(group = "com.intellij", module = "annotations")
+}
 android {
     namespace = "com.alvin.chatbox"
     compileSdk {
@@ -70,6 +73,21 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+
+    implementation("androidx.compose.material:material-icons-extended")
+
+
+    // Room database
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    
+    // MPAndroidChart for charts
+    implementation (libs.mpandroidchart)
+
+    // Speech recognition
+    implementation("androidx.activity:activity-ktx:1.8.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

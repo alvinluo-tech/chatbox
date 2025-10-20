@@ -8,12 +8,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -144,14 +149,27 @@ fun ChatScreen(viewModel: ChatViewModel = hiltViewModel()) {
 fun MessageBubble(message: com.alvin.chatbox.domain.model.ChatMessage) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = if (message.isUser) Arrangement.End else Arrangement.Start
+        horizontalArrangement = if (message.isUser) Arrangement.End else Arrangement.Start,
+        verticalAlignment = Alignment.Top
     ) {
+        if (!message.isUser) {
+            // AI/Other avatar on the left
+            Icon(
+                imageVector = Icons.Default.Face,
+                contentDescription = "AI Avatar",
+                tint = Color(0xFF607D8B),
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(end = 4.dp)
+            )
+        }
+
         Card(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(4.dp),
             colors = androidx.compose.material3.CardDefaults.cardColors(
-                containerColor = if (message.isUser) 
-                    Color(0xFF2196F3) 
-                else 
+                containerColor = if (message.isUser)
+                    Color(0xFF2196F3)
+                else
                     Color(0xFFF5F5F5)
             )
         ) {
@@ -160,6 +178,18 @@ fun MessageBubble(message: com.alvin.chatbox.domain.model.ChatMessage) {
                 modifier = Modifier.padding(12.dp),
                 color = if (message.isUser) Color.White else Color.Black,
                 fontSize = 16.sp
+            )
+        }
+
+        if (message.isUser) {
+            // User avatar on the right
+            Icon(
+                imageVector = Icons.Default.Person,
+                contentDescription = "User Avatar",
+                tint = Color(0xFF2196F3),
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(start = 4.dp)
             )
         }
     }

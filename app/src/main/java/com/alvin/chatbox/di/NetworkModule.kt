@@ -54,6 +54,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideChatApi(retrofit: Retrofit): ChatApi = retrofit.create(ChatApi::class.java)
+    
+    @Provides
+    @Singleton
+    fun provideBloodPressureApi(retrofit: Retrofit): com.alvin.chatbox.data.remote.BloodPressureApi = retrofit.create(com.alvin.chatbox.data.remote.BloodPressureApi::class.java)
 }
 
 
